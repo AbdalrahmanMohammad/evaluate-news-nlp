@@ -12,8 +12,11 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('dist'))
 
+const baseURL = 'https://api.openweathermap.org/data/2.5/weather?zip=';
+const apiKey = `&appid=${process.env.apiKey}&units=imperial`;
 
 console.log(__dirname);
+console.log(apiKey);
 
 // Variables for url and api key
 
