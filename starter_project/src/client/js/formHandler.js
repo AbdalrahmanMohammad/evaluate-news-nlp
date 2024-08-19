@@ -1,6 +1,12 @@
 // Replace checkForName with a function that checks the URL
 import { checkForUrl } from './urlChecker'
 
+const agreement = document.querySelector(".agreement span:last-child");
+const confidence = document.querySelector(".confidence span:last-child");
+const score_tag = document.querySelector(".score_tag span:last-child");
+const subjectivity = document.querySelector(".subjectivity span:last-child");
+const result = document.querySelector(".bottom span:last-child");
+
 const form = document.getElementById('urlForm');
 form.addEventListener('submit', handleSubmit);
 
@@ -12,19 +18,19 @@ function handleSubmit(event) {
 
     // If the URL is valid, send it to the server using the serverURL constant above
     if (checkForUrl(formText)) {
-        postData('/analyze', { "url": formText }).then(data => {
+        postData('http://localhost:8000/analyze', { "url": formText }).then(data => {
             console.log('Received data:', data);
-            console.log(data.agreement);
-            console.log(data.confidence);
-            console.log(data.score_tag);
-            console.log(data.subjectivity);
-            console.log(data.sentence_list[0].text);
+            agreement.innerHTML = data.agreement;
+            confidence.innerHTML = data.confidence;
+            score_tag.innerHTML = data.score_tag;
+            subjectivity.innerHTML = data.subjectivity;
+            result.innerHTML = data.sentence_list[0].text;
         })
             .catch(error => {
                 console.error('Error:', error);
             });
     }
-    else{
+    else {
         alert("please enter a valid URL");
     }
 
