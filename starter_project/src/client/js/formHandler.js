@@ -8,8 +8,9 @@ const subjectivity = document.querySelector(".subjectivity span:last-child");
 const result = document.querySelector(".bottom span:last-child");
 
 const form = document.getElementById('urlForm');
+if(form){
 form.addEventListener('submit', handleSubmit);
-
+}
 function handleSubmit(event) {
     event.preventDefault();
 
