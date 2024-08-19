@@ -57,4 +57,5 @@ const postData = async (url = '', data = {}) => {
 
 // Export the handleSubmit function
 export { handleSubmit };
+export { postData };
 
