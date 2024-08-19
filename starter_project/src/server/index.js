@@ -25,20 +25,19 @@ app.get('/', function (req, res) {
     res.sendFile('dist/index.html')
 })
 
-// function to analyze the statement
-async function analyzeSentiment(text) {
+// function to analyze the url
+async function analyzeSentiment(url) {
     try {
         const response = await axios.post(baseURL, null, {
             params: {
                 key: apiKey,
-                txt: text,
+                url: url,
                 lang: 'en'
             },
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         });
-
         return response.data;
     } catch (error) {
         throw new Error(error.response ? error.response.data : error.message);
@@ -47,14 +46,14 @@ async function analyzeSentiment(text) {
 
 // POST route to analyze sentiment
 app.post('/analyze', async (req, res) => {
-    const { text } = req.body;
+    const { url } = req.body;
 
-    if (!text) {
+    if (!url) {
         return res.status(400).json({ error: 'Text is required' });
     }
 
     try {
-        const result = await analyzeSentiment(text);
+        const result = await analyzeSentiment(url);
         res.json(result);
     } catch (error) {
         res.status(500).json({ error: error.message });

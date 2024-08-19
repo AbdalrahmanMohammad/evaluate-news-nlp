@@ -1,6 +1,6 @@
 // js files
 import { handleSubmit } from './js/formHandler'
-import { checkForName } from './js/nameChecker'
+import { checkForUrl } from './js/urlChecker'
 
 // sass files
 import './styles/resets.scss'
@@ -13,4 +13,3 @@ import './styles/header.scss'
 alert("I EXIST")
 // console.log("CHANGE!!");
 
-// sass files
